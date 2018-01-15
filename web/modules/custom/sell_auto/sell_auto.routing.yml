@@ -5,3 +5,20 @@ sell_auto.index:
     _title: 'Liste des vehicules'
   requirements:
     _permission: 'access content'
+
+#admin
+sell_auto.manage_vehicules:
+  path: '/manage-vehicules'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\Admin\AdminController::manageVehicules'
+    _title: 'Manage vehicules'
+  requirements:
+    _permission: 'administer site configuration'
+
+sell_auto.dashboard:
+  path: '/dashboard'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\Admin\AdminController::dashboard'
+    _title: 'dashboard'
+  requirements:
+    _permission: 'administer site configuration'
