@@ -1,0 +1,5 @@
+type: module
+name: Intro
+description: 'Module Intro'
+package: Custom
+core: '8.x'

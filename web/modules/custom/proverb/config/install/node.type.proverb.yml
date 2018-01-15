@@ -1,0 +1,8 @@
+type: proverb
+name: Proverb
+description: 'Just a simple proverb content type'
+new_revision: false
+display_submitted: false
+preview_mode: 0
+status: true
+langcode: en

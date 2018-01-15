@@ -1,0 +1,15 @@
+proverb.greet:
+  path: '/list'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::list'
+    _title: 'Liste des proverbes'
+  requirements:
+    _permission: 'access content'
+
+proverb.greet_num_form:
+  path: '/admin/config/upload-proverb'
+  defaults:
+    _form: '\Drupal\proverb\Form\UploadListProverbForm'
+    _title: 'Liste des proverbs'
+  requirements:
+    _permission: 'administer site configuration'

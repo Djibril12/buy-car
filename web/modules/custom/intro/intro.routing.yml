@@ -1,0 +1,26 @@
+into.greet:
+  path: '/greet'
+  defaults:
+    _controller: '\Drupal\intro\Controller\GreetingController::greet'
+    _title: 'Page de salutation'
+  requirements:
+    _permission: 'access content'
+
+intro.greet_num_form:
+  path: '/admin/config/greeting-num'
+  defaults:
+    _form: '\Drupal\intro\Form\GreetingNumForm'
+    _title: 'Salutation'
+  requirements:
+    _permission: 'administer site configuration'
+
+intro.default_form:
+  path: '/admin/config/intro/default'
+  defaults:
+    _form: '\Drupal\intro\Form\DefaultForm'
+    _title: 'DefaultForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+

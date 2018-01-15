@@ -1,0 +1,5 @@
+type: module
+name: Proverb
+description: 'Module de proverb'
+package: Custom
+core: '8.x'
