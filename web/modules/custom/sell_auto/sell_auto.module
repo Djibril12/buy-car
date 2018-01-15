@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains sell_auto.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function sell_auto_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the sell_auto module.
+    case 'help.page.sell_auto':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module de vente de vehicule en ligne') . '</p>';
+      return $output;
+
+    default:
+  }
+}

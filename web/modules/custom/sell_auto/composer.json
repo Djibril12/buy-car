@@ -1,0 +1,14 @@
+{
+  "name": "drupal/sell_auto",
+  "type": "drupal-module",
+  "description": "Module de vente de vehicule en ligne",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/sell_auto",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/sell_auto",
+    "source": "http://cgit.drupalcode.org/sell_auto"
+  },
+  "require": { }
+}

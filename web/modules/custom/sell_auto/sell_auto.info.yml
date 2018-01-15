@@ -1,0 +1,5 @@
+name: 'Sell Auto''
+type: module
+description: 'Module de vente de vehicule en ligne''
+core: 8.x
+package: 'Custom'
