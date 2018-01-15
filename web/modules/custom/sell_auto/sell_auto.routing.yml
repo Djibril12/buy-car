@@ -1,0 +1,7 @@
+sell_auto.index:
+  path: '/list-auto'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\DefaultController::index'
+    _title: 'Liste des vehicules'
+  requirements:
+    _permission: 'access content'

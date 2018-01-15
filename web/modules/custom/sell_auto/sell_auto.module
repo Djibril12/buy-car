@@ -22,3 +22,73 @@ function sell_auto_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+  /*
+ * implements hook_schema
+ *
+ * hook destiné à créer une table en base de données
+ * dès l'installation du module
+ */
+function sell_auto_schema() {
+
+  $schema['auto_vehicule'] = array(
+    'description' => '',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Vehicule ID'
+      ),
+      'marque' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Vehicule marque'
+      ),
+      'energie' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Vehicule model'
+      ),
+      'vitesse' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+
+    ),
+    'primary key' => array('id')
+  );
+
+  $schema['auto_image'] = array(
+    'description' => '',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Vehicule ID'
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Image name'
+      ),
+      'alt' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Image alt'
+      )
+    ),
+    'primary key' => array('id')
+  );
+
+  return $schema;
+
+}
