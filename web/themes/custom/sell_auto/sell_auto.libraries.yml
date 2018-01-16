@@ -1,0 +1,7 @@
+base:
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+      css/styles.css: {}
+  js:
+    js/script.js: {}
