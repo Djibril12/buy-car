@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Vente de vehicule</title>
-    <!--
-    placeholder_token permet aux différents modules/themes
-    de charger leurs bibliothèques de fichiers css/js
-    -->
-    <css-placeholder token="{{ placeholder_token }}">
-    <js-placeholder token="{{ placeholder_token }}">
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <title>Vente de vehicule</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ directory }}/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ directory }}/css/styles.css">
+</head>
+<body>
 
-    {{ page }}
+      {{ page }}
 
-    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
-
-  </body>
+  <script src="{{ directory }}/js/script.js" ></script>
+  <script src="{{ directory }}/js/bootstrap.min.js" ></script>
+  <script src="{{ directory }}/js/jquery.min.js" ></script>
+</body>
 </html>
