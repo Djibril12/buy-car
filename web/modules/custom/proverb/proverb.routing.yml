@@ -1,5 +1,5 @@
 proverb.greet:
-  path: '/list'
+  path: '/list-proverb'
   defaults:
     _controller: '\Drupal\proverb\Controller\ProverbController::list'
     _title: 'Liste des proverbes'

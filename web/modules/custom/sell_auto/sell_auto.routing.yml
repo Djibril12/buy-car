@@ -1,5 +1,5 @@
 sell_auto.index:
-  path: '/list-auto'
+  path: '/list'
   defaults:
     _controller: '\Drupal\sell_auto\Controller\DefaultController::index'
     _title: 'Liste des vehicules'

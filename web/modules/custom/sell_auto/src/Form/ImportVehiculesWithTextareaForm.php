@@ -4,6 +4,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 class ImportVehiculesWithTextareaForm extends ConfigFormBase {
+
   public function getEditableConfigNames() {}
   public function getFormId() {
     return 'sell_auto.import_vehicule_form';
@@ -12,7 +13,7 @@ class ImportVehiculesWithTextareaForm extends ConfigFormBase {
     $form['ta'] = array(
       '#type' => 'textarea',
       '#title' => $this->t('Import'),
-      '#description' => 'Coller vos proverbes ici',
+      '#description' => 'Coller les vehicules ici',
       '#default_value' => ''
     );
     return parent::buildForm($form, $form_state);

@@ -45,21 +45,23 @@ function sell_auto_schema() {
         'default' => '',
         'description' => 'Vehicule marque'
       ),
-      'energie' => array(
-        'type' => 'varchar',
-        'length' => 255,
-        'not null' => TRUE,
-        'default' => '',
-        'description' => 'Vehicule model'
-      ),
+     'price' => array('type' => 'float', 'not null' => TRUE, 'default' => 0.0),
+     'energie' => array('type' => 'varchar','length' => 255,'not null' => TRUE,'default' => '', 'description' => 'Vehicule model'),
       'vitesse' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0,
       ),
+      'id_image' => array('type' => 'int', 'not null' => TRUE),
 
     ),
+    'foreign keys' => array(
+      'node_sa_image' => array(
+        'table' => 'auto_image',
+        'columns' => array('id_image' => 'id'),
+       ),
+   ),
     'primary key' => array('id')
   );
 
@@ -86,6 +88,34 @@ function sell_auto_schema() {
         'description' => 'Image alt'
       )
     ),
+    'primary key' => array('id')
+  );
+
+  $schema['auto_commande'] = array(
+    'description' => 'Commande client',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Commande ID',
+      ),
+      'userid' => array(
+        'type' => 'int',
+        'length' => 10,
+        'not null' => TRUE,
+        'description' => 'Users ID',
+      ),
+      'carids' => array(
+        'mysql_type' => 'json',
+        'description' => 'list of car',
+      )
+    ),
+    'foreign keys' => array(
+      'node_sa_user' => array(
+        'table' => 'users',
+        'columns' => array('uid' => 'uid'),
+       ),
+   ),
     'primary key' => array('id')
   );
 

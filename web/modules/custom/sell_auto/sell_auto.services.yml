@@ -1,3 +1,4 @@
 services:
   sell_auto.panier:
-    class: \Drupal\sell_auto\PanierService
+    class: \Drupal\sell_auto\Service\PanierService
+    arguments: ['@session']
