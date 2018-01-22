@@ -86,7 +86,14 @@ function sell_auto_schema() {
         'not null' => TRUE,
         'default' => '',
         'description' => 'Image alt'
-      )
+      ),
+      'uuid' => array(
+        'type' => 'char',
+        'length' => 36,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The Universally Unique Identifier.',
+      ),
     ),
     'primary key' => array('id')
   );

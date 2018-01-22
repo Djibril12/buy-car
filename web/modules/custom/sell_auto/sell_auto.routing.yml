@@ -7,6 +7,14 @@ sell_auto.index:
     _permission: 'access content'
 
 #admin
+sell_auto.add_car:
+  path: '/admin/config/add/car'
+  defaults:
+    _form: '\Drupal\sell_auto\Form\CarForm'
+    _title: 'Formulaire de véhicule'
+  requirements:
+    _permission: 'Administer site configuration'
+
 sell_auto.manage_vehicules:
   path: '/manage-vehicules'
   defaults:

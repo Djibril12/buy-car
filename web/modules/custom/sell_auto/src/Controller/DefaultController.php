@@ -13,6 +13,10 @@ class DefaultController extends ControllerBase {
     dpm('test');
     dpm($panier->listProducts());
 
+    
+
+
+
     return [
       '#markup' => "En construction",
     ];
