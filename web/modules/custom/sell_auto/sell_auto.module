@@ -22,6 +22,27 @@ function sell_auto_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/*
+ * implements hook_theme()
+ *
+ */
+function sell_auto_theme($existing, $type, $theme, $path) {
+  return [
+    'catalogue' => [
+      'variables' => [
+        'vehicules' => NULL,
+      ]
+    ],
+    'view_car' => [
+      'variables' => [
+        'vehicules' => NULL,
+      ]
+    ]
+  ];
+}
+
+
   /*
  * implements hook_schema
  *
@@ -33,26 +54,11 @@ function sell_auto_schema() {
   $schema['auto_vehicule'] = array(
     'description' => '',
     'fields' => array(
-      'id' => array(
-        'type' => 'serial',
-        'not null' => TRUE,
-        'description' => 'Vehicule ID'
-      ),
-      'marque' => array(
-        'type' => 'varchar',
-        'length' => 255,
-        'not null' => TRUE,
-        'default' => '',
-        'description' => 'Vehicule marque'
-      ),
-     'price' => array('type' => 'float', 'not null' => TRUE, 'default' => 0.0),
-     'energie' => array('type' => 'varchar','length' => 255,'not null' => TRUE,'default' => '', 'description' => 'Vehicule model'),
-      'vitesse' => array(
-        'type' => 'int',
-        'unsigned' => TRUE,
-        'not null' => TRUE,
-        'default' => 0,
-      ),
+      'id' => array(  'type' => 'serial', 'not null' => TRUE, 'description' => 'Vehicule ID'),
+      'marque' => array(  'type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => '','description' => 'Vehicule marque'),
+      'price' => array('type' => 'float', 'not null' => TRUE, 'default' => 0.0),
+      'energie' => array('type' => 'varchar','length' => 255,'not null' => TRUE,'default' => '', 'description' => 'Vehicule model'),
+      'vitesse' => array('type' => 'varchar','length' => 255,'not null' => TRUE,'default' => '', 'description' => 'Boîte de Vehicule'),
       'id_image' => array('type' => 'int', 'not null' => TRUE),
 
     ),

@@ -1,0 +1,14 @@
+
+{{ vehicules }}
+
+<div class="row text-center slideanim">
+  {% for vehicule in vehicules %}
+   <div class="col-sm-4">
+     <div class="thumbnail">
+       <img src="{{ vehicule.url }}" alt="Paris" width="400" height="300">
+       <p><strong>Paris</strong></p>
+       <p>Yes, we built Paris</p>
+     </div>
+   </div>
+ {% endfor %}
+</div>

@@ -37,7 +37,16 @@ class CarForm extends ConfigFormBase {
       '#description' => '',
       '#default_value' => 'Essence'
     );
-
+    $form['vitesse'] = array(
+      '#type' => 'select',
+      '#title' => $this->t('Boîte de vitesse'),
+      '#options' => [
+        '-1' => $this->t('Selectionnez la boîte de vitesse'),
+        'auto' => $this->t('Automatique'),
+        'manu' => $this->t('Manuelle'),
+      ],
+      '#default_value' => '-1',
+    );
 
     $form['image'] = array(
     '#type' => 'managed_file',
@@ -56,34 +65,56 @@ class CarForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
     $file = \Drupal::entityTypeManager()->getStorage('file')
-                    ->load($form_state->getValue('image')[0]); // Just FYI. The file id will be stored as an array
-     // And you can access every field you need via standard method
-    //dpm($file->get('filename')->value);
-    //dpm($file);
-    //dpm($form_state['values']);
+                      ->load($form_state->getValue('image')[0]);
 
-    // $word = $form_state->getValue('banned_word');
-    // // La Config n'est pas adaptée à notre situation
-    // // Il faudrait calculer des indices de clés
-    // // Ce n'est pas le but du service config.factory
-    // // $this->config('proverb.banned_word')
-    // //   ->set('word', $word)
-    // //   ->save();
-    // // Plus approprié : utilisation du service database
-    // // Insertion dans la table personnalisée banned_word
     $db = \Drupal::service('database');
-    $fields = array(
+    $transaction = $db->startTransaction();
+
+    try {
+
+      // contruction des données de l'image
+      $imageData = array(
         'name' => $file->get('filename')->value,
         'alt' => $file->get('filename')->value,
         'uuid' => $file->get('uuid')->value
       );
 
-    //dpm($fields);
-    // // Utilisation de la méthode insert du query builder
-    $db
-      ->insert('auto_image')
-      ->fields($fields)
-      ->execute();
+      // insertion d'une image et recuperation de l'ID de l'image
+      $idfile = $this->insertImage($db , $imageData);
+
+      // construction d'une voiture
+      $carData = array(
+        'marque' => $form_state->getValue('marque'),
+        'price' => (float) $form_state->getValue('marque'),
+        'energie' => $form_state->getValue('energie'),
+        'vitesse' => $form_state->getValue('vitesse'),
+        'id_image' => $idfile,
+      );
+
+      $this->insertCar($db, $carData);
+
+    }
+    catch (Exception $e) {
+
+      $transaction->rollBack();
+      //watchdog_exception('my_type', $e);
+      \Drupal::logger('php')->error($e->getMessage());
+    }
+
     return parent::submitForm($form, $form_state);
+  }
+
+  private function insertImage($db , array $data){
+  return $db
+          ->insert('auto_image')
+          ->fields($data)
+          ->execute();
+  }
+
+  private function insertCar($db , array $data){
+    $db
+      ->insert('auto_vehicule')
+      ->fields($data)
+      ->execute();
   }
 }

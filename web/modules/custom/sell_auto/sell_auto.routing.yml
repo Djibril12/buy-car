@@ -6,6 +6,14 @@ sell_auto.index:
   requirements:
     _permission: 'access content'
 
+sell_auto.view:
+  path: '/view/car/{id}'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\DefaultController::viewCar'
+    _title: 'Detail de du véhicule'
+  requirements:
+    _permission: access content
+
 #admin
 sell_auto.add_car:
   path: '/admin/config/add/car'
