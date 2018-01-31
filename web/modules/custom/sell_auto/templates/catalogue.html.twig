@@ -5,9 +5,11 @@
   {% for vehicule in vehicules %}
    <div class="col-sm-4">
      <div class="thumbnail">
-       <img src="{{ vehicule.url }}" alt="Paris" width="400" height="300">
-       <p><strong>Paris</strong></p>
-       <p>Yes, we built Paris</p>
+       <a href="{{ path('sell_auto.view', {'id': vehicule.id }) }}">
+         <img src="{{ vehicule.url }}" alt="Paris" width="400" height="300">
+         <p><strong>Paris</strong></p>
+         <p>Yes, we built Paris</p>
+       </a>
      </div>
    </div>
  {% endfor %}
