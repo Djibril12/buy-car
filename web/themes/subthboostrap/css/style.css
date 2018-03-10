@@ -2,7 +2,35 @@
  * Place your custom styles here.
  */
 #pre_header {
-  border: 2px solid red;
-  height: 50px;
-  
+  position: relative;
+  height: 30px;
+  top: inherit;
+  z-index: 1000;
+}
+
+#block-panierblock {
+  height: 30px;
+  margin-right: 102px;
+
+}
+
+header{
+
+height: 70px;
+bottom: -55px;
+
+}
+
+.main-container {
+  position: relative;
+  top: 40px;
+}
+
+footer.footer {
+  background-color: black;
+  width:inherit;
+}
+
+#block-views-block-who-s-online-who-s-online-block {
+  display: none;
 }

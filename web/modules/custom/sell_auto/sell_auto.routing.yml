@@ -1,4 +1,12 @@
 sell_auto.index:
+  path: '/'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\DefaultController::index'
+    _title: 'Liste des vehicules'
+  requirements:
+    _permission: 'access content'
+
+sell_auto.list:
   path: '/list'
   defaults:
     _controller: '\Drupal\sell_auto\Controller\DefaultController::index'
@@ -10,9 +18,26 @@ sell_auto.view:
   path: '/view/car/{id}'
   defaults:
     _controller: '\Drupal\sell_auto\Controller\DefaultController::viewCar'
-    _title: 'Detail de du véhicule'
+    _title: 'Detail du véhicule'
   requirements:
     _permission: access content
+
+sell_auto.addCar.inCart:
+  path: '/add/car/{id}'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\DefaultController::addCarInCart'
+    _title: 'Ajout du véhicule dans le panier'
+  requirements:
+    _permission: access content
+
+sell_auto.cart:
+  path: '/cart'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\DefaultController::cart'
+    _title: 'Panier'
+  requirements:
+    _permission: access content
+
 
 #admin
 sell_auto.add_car:

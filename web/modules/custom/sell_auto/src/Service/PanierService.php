@@ -23,8 +23,6 @@ class PanierService {
           $this->panier = $this->session->get('panier');
       }
 
-      //dump($this->panier);
-
   }
 
   public function listProducts()
@@ -32,22 +30,38 @@ class PanierService {
       return $this->panier;
   }
 
+  private function getProduitByIndex($id)
+  {
+      $idProduit = -1;
+      if(!empty($this->panier)) {
+          foreach ($this->panier as $key => $article) {
+              if (in_array($id, $article)) {
+                  $idProduit = $key;
+                  break;
+              }
+          }
+      }
+      return $idProduit;
+
+  }
+
   public function addProductInCart($produit)
   {
       $commande = [];
-      $articleASupp = $this->getProductByIndex($produit->getId());
-      //dump($articleASupp); exit();
-      if($articleASupp === -1)
+      // recherche id du produit dans le panier
+      $idProduit = $this->getProduitByIndex($produit->id);
+
+      if($idProduit === -1)
       {
-          $commande['id'] = $produit->getId();
+          $commande['id'] = $produit->id;
           $commande['qte'] = 1;
-          $commande['prix'] = $produit->getPrix();
+          $commande['prix'] = $produit->price;
           $this->panier[] = $commande;
 
       }
       else
       {
-          $this->panier[$articleASupp]['qte'] +=  1;
+          $this->panier[$idProduit]['qte'] +=  1;
       }
 
       $this->session->set('panier', $this->panier);
@@ -79,20 +93,5 @@ class PanierService {
 
   }
 
-
-  private function getProduitByIndex($id)
-  {
-      $articleASupp = -1;
-      if(!empty($this->panier)) {
-          foreach ($this->panier as $key => $article) {
-              if (in_array($id, $article)) {
-                  $articleASupp = $key;
-                  break;
-              }
-          }
-      }
-      return $articleASupp;
-
-  }
 
 }

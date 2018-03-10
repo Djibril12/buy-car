@@ -24,7 +24,7 @@ function sell_auto_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /*
- * implements hook_theme()
+ * implements sell_auto_theme()
  *
  */
 function sell_auto_theme($existing, $type, $theme, $path) {
@@ -34,9 +34,19 @@ function sell_auto_theme($existing, $type, $theme, $path) {
         'vehicules' => NULL,
       ]
     ],
-    'view_car' => [
+    'viewcar' => [
       'variables' => [
-        'vehicules' => NULL,
+        'vehicule' => NULL,
+      ]
+    ],
+    'cart' => [
+      'variables' => [
+        'panier' => NULL,
+      ]
+    ],
+    'preheader' => [
+      'variables' => [
+        'nb' => NULL,
       ]
     ]
   ];

@@ -1,0 +1,25 @@
+<form class="user-register-form user-form" enctype="multipart/form-data" action="{{ path('user.register') }}" method="post" id="user-register-form" accept-charset="UTF-8">
+  <fieldset>
+    <div class="form-group">
+      <label for="edit-email">Email address</label>
+      <input required name="mail" type="email" class="form-email form-control" id="edit-email" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="edit-name">Username</label>
+      <input type="text" class="username form-control" name="name" id="edit-name" placeholder="Enter username" required>
+    </div>
+    <div class="form-group">
+      <label for="edit-user-picture-0-upload">Avatar </label>
+      <input type="file" name="files[user_picture_0]" class="form-control-file" id="edit-user-picture-0-upload" size="22" aria-describedby="fileHelp">
+      <small id="fileHelp" class="form-text text-muted">Allow extension : jpg, gif, png, jpeg</small>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input  aria-describedby="edit-contact--2--description" class="form-checkbox"
+         type="checkbox" id="edit-contact--2" name="contact" value="1" checked="checked">
+         Show your email for anybody
+      </label>
+    </div>
+    <button type="submit" name="op" id="edit-submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>

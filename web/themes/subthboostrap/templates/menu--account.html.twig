@@ -40,12 +40,14 @@
         ]
       %}
 
+
       {% if menu_level == 0 and item.is_expanded %}
         <li{{ item.attributes.addClass(item_classes) }}>
         <a href="{{ item.url }}" class="dropdown-toggle" data-toggle="dropdown">{{ item.title }} <span class="caret"></span></a>
       {% else %}
         <li{{ item.attributes.addClass(item_classes) }}>
         {{ link(item.title, item.url) }}
+
       {% endif %}
       {% if item.below %}
         {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav', 'navbar-right'), menu_level + 1) }}
@@ -53,12 +55,7 @@
 
       </li>
     {% endfor %}
-      <li>
-        <a href="#" class="">
-          <span class="glyphicon glyphicon-shopping-cart"></span> Cart
-          <span class="badge">{{get_number_of_car_in_cart()}}</span>
-        </a>
-      </li>
+    
     </ul>
   {% endif %}
 {% endmacro %}

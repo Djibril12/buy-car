@@ -66,6 +66,7 @@ class CarForm extends ConfigFormBase {
 
     $file = \Drupal::entityTypeManager()->getStorage('file')
                       ->load($form_state->getValue('image')[0]);
+  
 
     $db = \Drupal::service('database');
     $transaction = $db->startTransaction();
@@ -85,7 +86,7 @@ class CarForm extends ConfigFormBase {
       // construction d'une voiture
       $carData = array(
         'marque' => $form_state->getValue('marque'),
-        'price' => (float) $form_state->getValue('marque'),
+        'price' => (float) $form_state->getValue('prix'),
         'energie' => $form_state->getValue('energie'),
         'vitesse' => $form_state->getValue('vitesse'),
         'id_image' => $idfile,

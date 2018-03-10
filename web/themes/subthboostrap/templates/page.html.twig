@@ -11,6 +11,14 @@
         theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
       ]
     %}
+    {# Pre_header #}
+    {% if page.pre_header %}
+      {% block pre_header %}
+        <div id="pre_header" class="container col-sm-12" role="heading">
+          {{ page.pre_header }}
+        </div>
+      {% endblock %}
+    {% endif %}
 
     <header{{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
       {% if not navbar_attributes.hasClass(container) %}
@@ -39,15 +47,6 @@
         </div>
       {% endif %}
     </header>
-  {% endblock %}
-{% endif %}
-
-{# Pre_header #}
-{% if page.pre_header %}
-  {% block pre_header %}
-    <div id="pre_header" class="col-sm-12" role="heading">
-      {{ page.pre_header }} ffffffff
-    </div>
   {% endblock %}
 {% endif %}
 

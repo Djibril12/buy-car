@@ -5,3 +5,67 @@
  *
  * Place your custom PHP code in this file.
  */
+ /*function subthboostrap_theme() {
+   return array(
+     'user_login' => array(
+       'template' => 'user-login',
+       'arguments' => array('form' => NULL),
+     ),
+     'user_register' => array(
+       'template' => 'user-register',
+       'arguments' => array('form' => NULL),
+     ),
+     'user_pass' => array(
+       'template' => 'user-pass',
+       'arguments' => array('form' => NULL),
+     ),
+   );
+ }
+*/
+
+ function subthboostrap_theme() {
+   $items = array();
+
+   $items['user_login'] = array(
+     'render element' => 'form',
+     'path' => drupal_get_path('theme', 'subthboostrap') . '/templates',
+     'template' => 'user-login',
+     'preprocess functions' => array(
+        'subthboostrap_preprocess_user_login'
+     ),
+   );
+
+   $items['user_register_form'] = array(
+     'render element' => 'form',
+     'path' => drupal_get_path('theme', 'subthboostrap') . '/templates',
+     'template' => 'user-register-form',
+     'preprocess functions' => array(
+       'subthboostrap_preprocess_user_register_form'
+     ),
+   );
+
+   // $items['user_pass'] = array(
+   //   'render element' => 'form',
+   //   'path' => drupal_get_path('theme', 'subthboostrap') . '/templates',
+   //   'template' => 'user-pass',
+   //   'preprocess functions' => array(
+   //     'subthboostrap_preprocess_user_pass'
+   //   ),
+   // );
+
+   return $items;
+ }
+
+
+ function subthboostrap_preprocess_user_login(&$vars) {
+   $vars['intro_text'] = t('This is my awesome login form');
+ }
+
+ function subthboostrap_preprocess_user_register_form(&$vars) {
+   $vars['intro_text'] = t('This is my super awesome reg form');
+
+ }
+
+ // function subthboostrap_preprocess_user_pass(&$vars) {
+ //   $vars['intro_text'] = t('This is my super awesome request new password form');
+ // }

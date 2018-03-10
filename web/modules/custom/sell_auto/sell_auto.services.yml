@@ -2,3 +2,8 @@ services:
   sell_auto.panier:
     class: \Drupal\sell_auto\Service\PanierService
     arguments: ['@session']
+  sell_auto.twig.extension:
+    class: Drupal\sell_auto\TwigExtension\SellAutoTwigExtension
+    arguments: ['@renderer', '@session']
+    tags:
+      - { name: twig.extension }

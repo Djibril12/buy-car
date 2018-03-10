@@ -1,0 +1,26 @@
+/*.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+}
+*/
+/* Remove the jumbotron's default bottom margin
+ .jumbotron {
+  margin-bottom: 0;
+}*/
+
+/* Add a gray background color and some padding to the footer*/
+
+/* .visually-hidden {
+  display: none;
+} */
+#block-sellauto-account-menu {
+  height: 50px;
+  border-bottom: 1px solid #EBEBEB;
+  border-top: 2px solid #0088CC;
+
+}
+
+footer {
+  background-color: #2a2730;
+  color: white;
+}

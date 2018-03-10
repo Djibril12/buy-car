@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Buy car</title>
+    <!--
+    placeholder_token permet aux différents modules/themes
+    de charger leurs bibliothèques de fichiers css/js
+    -->
+    <link rel="stylesheet" href="{{directory}}/css/styles.css">
+    <link rel="stylesheet" href="{{directory}}/css/bootstrap.min.css">
+  </head>
+  <body>
+
+    {# dpm(_context|keys) #}
+    {{ page }}
+
+
+    <script src="{{directory}}/js/script.js" charset="utf-8"></script>
+  </body>
+</html>

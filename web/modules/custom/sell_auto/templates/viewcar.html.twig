@@ -1,0 +1,40 @@
+<div class="row text-center slideanim">
+   <div class="col-sm-4">
+     <div class="thumbnail">
+
+         <img src="{{ vehicule.src_image }}" alt="Paris" width="400" height="300">
+     </div>
+
+   </div>
+   <div class="description col-sm-8">
+     <p><strong>{{ vehicule.marque }}</strong></p>
+     <p> {{ vehicule.price }} </p>
+     <button type="button" name="button" onclick="addCarInCart({{ vehicule.id }})" class="btn btn-primary">Ajouter au panier</button>
+   </div>
+</div>
+
+<script type="text/javascript">
+
+  var app = {
+    url: 'http://localhost/drupal-dev3/web/add/car/',
+  };
+  var badgePanier = document.getElementById('badge-panier');
+
+  function addCarInCart(idVechicule) {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", app.url + idVechicule  , true);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        data = JSON.parse(this.response);
+        console.log(data);
+        badgePanier.innerText = data.qty;
+      }
+    };
+
+  }
+
+</script>
