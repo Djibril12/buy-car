@@ -22,6 +22,14 @@ sell_auto.view:
   requirements:
     _permission: access content
 
+sell_auto.deleteCar.inCart:
+  path: '/delete/car/{id}'
+  defaults:
+    _controller: '\Drupal\sell_auto\Controller\DefaultController::deleteCarInCart'
+    _title: 'Suppression du véhicule dans le panier'
+  requirements:
+    _permission: access content
+
 sell_auto.addCar.inCart:
   path: '/add/car/{id}'
   defaults:
@@ -31,7 +39,7 @@ sell_auto.addCar.inCart:
     _permission: access content
 
 sell_auto.cart:
-  path: '/cart'
+  path: '/panier'
   defaults:
     _controller: '\Drupal\sell_auto\Controller\DefaultController::cart'
     _title: 'Panier'

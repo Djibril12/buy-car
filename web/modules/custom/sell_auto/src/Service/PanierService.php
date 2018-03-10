@@ -30,11 +30,12 @@ class PanierService {
       return $this->panier;
   }
 
-  private function getProduitByIndex($id)
+  private function getProductByIndex($id)
   {
       $idProduit = -1;
       if(!empty($this->panier)) {
           foreach ($this->panier as $key => $article) {
+              //dpm([$id, $key, $article]);
               if (in_array($id, $article)) {
                   $idProduit = $key;
                   break;
@@ -49,7 +50,7 @@ class PanierService {
   {
       $commande = [];
       // recherche id du produit dans le panier
-      $idProduit = $this->getProduitByIndex($produit->id);
+      $idProduit = $this->getProductByIndex($produit->id);
 
       if($idProduit === -1)
       {
@@ -70,13 +71,12 @@ class PanierService {
 
   public function  deleteProductFromCart($produit)
   {
-
-      $articleASupp = $this->getProductByIndex($produit->getId());
+      $articleASupp = $this->getProductByIndex($produit->id);
       array_splice($this->panier, $articleASupp, 1);
-      $this->session->set('panier', $this->panier);
+      $this->session->set('panier', $this->listProducts());
+      dpm($this->panier);
 
   }
-
 
   public function countProductInCart()
   {
@@ -92,6 +92,5 @@ class PanierService {
       return $totalPanier;
 
   }
-
 
 }

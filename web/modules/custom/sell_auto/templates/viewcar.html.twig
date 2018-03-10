@@ -16,12 +16,12 @@
 <script type="text/javascript">
 
   var app = {
-    url: 'http://localhost/drupal-dev3/web/add/car/',
+    url: 'http://localhost/buy-car/web/add/car/',
   };
   var badgePanier = document.getElementById('badge-panier');
 
   function addCarInCart(idVechicule) {
-
+    //alert(idVechicule);
     var xhttp = new XMLHttpRequest();
 
     xhttp.open("GET", app.url + idVechicule  , true);

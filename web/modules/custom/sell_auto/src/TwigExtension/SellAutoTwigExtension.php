@@ -24,9 +24,14 @@ class SellAutoTwigExtension extends \Twig_Extension {
   public function getFunctions() {
     return array(
       new \Twig_SimpleFunction('get_number_of_car_in_cart', array($this, 'getNumberOfCarInCart')),
+      new \Twig_SimpleFunction('get_total', array($this, 'getTotal')),
     );
   }
 
+  public function getTotal($price, $qte)
+  {
+    return floatval($price * $qte);
+  }
   public function getNumberOfCarInCart(){
     $sumArticle = 0;
     foreach ($this->session->get('panier') as $article) {

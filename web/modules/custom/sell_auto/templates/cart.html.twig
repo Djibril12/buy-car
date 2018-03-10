@@ -8,79 +8,56 @@
                         <th>Quantity</th>
                         <th class="text-center">Price</th>
                         <th class="text-center">Total</th>
-                        <th> </th>
+                        <th>Action </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                  {% for product in panier %}
+                    <tr class="content" tabindex="{{ product.id }}">
                         <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
-                            </div>
-                        </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
-                        <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                          <div class="media">
+                              <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{ product.img }}" style="width: 72px; height: 72px;"> </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading"><a href="#">{{ product['marque'] }}</a></h4>
+                                  <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+                                  <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <input type="number" class="form-control" id="quantity" value="{{ product.qty }}">
+                      </td>
+                      <td class="col-sm-1 col-md-1 text-center" style="text-align: center"><strong>{{ product.price }} €</strong></td>
+                      <td class="col-sm-1 col-md-1 text-center"><strong> {{ get_total(product.price, product.qty) }} €</strong></td>
+                      <td class="col-sm-1 col-md-1">
+                        <button type="button" class="btn btn-danger" onclick="deleteCarInCart({{ product.id }} , this)">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
+                        </button>
+                      </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
-                            </div>
-                        </div></td>
-                        <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="2">
-                        </td>
-                        <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                        <td class="col-md-1 text-center"><strong>$9.98</strong></td>
-                        <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
+
+                  {% endfor %}
+                    <tr id="separate">
+                        <td colspan="3"></td>
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+                        <td class="text-right"><h5><strong>24.59 €</strong></h5></td>
                     </tr>
                     <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
+                        <td colspan="3"></td>
                         <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                        <td class="text-right"><h5><strong>6.94 €</strong></h5></td>
                     </tr>
                     <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
+                        <td colspan="3"></td>
                         <td><h3>Total</h3></td>
                         <td class="text-right"><h3><strong>$31.53</strong></h3></td>
                     </tr>
                     <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
+                        <td colspan="3"></td>
                         <td>
-                        <button type="button" class="btn btn-default">
+                        <a class="btn btn-default" href="#">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
+                        </a></td>
                         <td>
                         <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
@@ -91,3 +68,71 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+var app = {
+  url: 'http://localhost/buy-car/web/delete/car/',
+  products: null,
+};
+var badgePanier = document.getElementById('badge-panier');
+var contents = document.getElementsByClassName('content');
+console.log(contents);
+
+function deleteCarInCart(idVechicule, elt) {
+  //alert(idVechicule);
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.open("GET", app.url + idVechicule  , true);
+  xhttp.send();
+
+  xhttp.onreadystatechange = function() {
+    if(this.readyState == 4 && this.status == 200) {
+      data = JSON.parse(this.response);
+      console.log(data.produit);
+    }
+  };
+
+  // console.log(elt.parentNode.parentNode.tabIndex);
+  // trSearched = elt.parentNode.parentNode.tabIndex;
+  // for (var i = 0; i < contents.length; i++) {
+  //   if(contents[i].tabIndex != trSearched)
+  //   {
+  //     var tr = document.createElement('tr');
+  //     tr.innerHTML = contents[i].innerHTML;
+  //     console.log(tr);
+  //   }
+  //
+  // }
+
+  function displayProducts(){
+
+    <tr class="content" tabindex="{{ product.id }}">
+        <td class="col-sm-8 col-md-6">
+          <div class="media">
+              <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{ product.img }}" style="width: 72px; height: 72px;"> </a>
+              <div class="media-body">
+                  <h4 class="media-heading"><a href="#">{{ product['marque'] }}</a></h4>
+                  <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+                  <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+              </div>
+          </div>
+      </td>
+      <td class="col-sm-1 col-md-1" style="text-align: center">
+        <input type="number" class="form-control" id="quantity" value="{{ product.qty }}">
+      </td>
+      <td class="col-sm-1 col-md-1 text-center" style="text-align: center"><strong>{{ product.price }} €</strong></td>
+      <td class="col-sm-1 col-md-1 text-center"><strong> {{ get_total(product.price, product.qty) }} €</strong></td>
+      <td class="col-sm-1 col-md-1">
+        <button type="button" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove"></span> Remove
+        </button>
+      </td>
+    </tr>
+
+  }
+
+
+}
+
+</script>
